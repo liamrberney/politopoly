@@ -58,9 +58,10 @@ public class Property implements Space{
         return owned;
     }
     void payRent(Player player){
-        player.setBalance(Board.getSpace(location).getRent());
-        owner.setBalance(rent[0]);
-        out.println(player+" pays "+owner+" $"+rent+" for rent");
+        int paidrent=rent[0];
+        player.setBalance(-paidrent);
+        owner.setBalance(paidrent);
+        out.println(player+" pays "+owner+" $"+rent[rentStatus]+" for rent");
     }
     void buyDialogue(Player player){
         out.println("Would "+player+" like to buy "+name+" for "+price+"? [yes/no]");
@@ -68,6 +69,7 @@ public class Property implements Space{
         if (decision){
             if(player.getBalance()>price){
                 owned=1;
+                owner=player;
                 player.addSpace(this);
                 Mechanics.setPlayer(player);
             }
@@ -75,9 +77,11 @@ public class Property implements Space{
         else{ 
             if (Mechanics.getNumPlayers()==2){
                 out.println("Would the other player like to buy "+name+" for "+price+"? [yes/no]");
-                if(player.getBalance()>price){
+                decision=decision();
+                if(player.getBalance()>price&&decision){
                     owned=1;
                     player.addSpace(this);
+                    Mechanics.setPlayer(player);
                 }
             }
             else{

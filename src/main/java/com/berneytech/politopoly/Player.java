@@ -33,6 +33,37 @@ public class Player {
         diceRoll();
         out.println(name+" rolls a "+dice+" and lands on "+Board.getSpace(location).getName());
         Board.getSpace(location).landedOn(this);
+        boolean turnEnded=false;
+        while(!turnEnded){
+            out.print("Would "+name+" like to build[build], donate to superpac[superpac], \n"
+                    + "invest[invest], mortgage[mortgage], unmortgage[unmortage], get stats[stats], or end turn[end]:");
+            String a=getInput();
+            switch(a){
+                case "build":
+                    buildDialogue();
+                    break;
+                case "superpac":
+                    superpacDialogue();
+                    break;
+                case "invest":
+                    investDialogue();
+                    break;
+                case "mortgage":
+                    mortgageDialogue();
+                    break;
+                case "unmortgage":
+                    unmortgageDialogue();
+                    break;
+                case "end":
+                    turnEnded=true;
+                    break;
+                case "stats":
+                    statsDialogue();
+                    break;
+                default:
+                    out.println("Sorry, your answer sucked. Try again.");
+            }
+        }
     }
     public String getInput(){
         Scanner keyboard = new Scanner(System.in);
@@ -48,7 +79,7 @@ public class Player {
         balance+=200;
     }
     void setBalance(int x){
-        balance+=x;
+        balance=balance+x;
     }
     void diceRoll(){
         dice=(int) ThreadLocalRandom.current().nextInt(1, 6 + 1)+ThreadLocalRandom.current().nextInt(1, 6 + 1);
@@ -65,5 +96,34 @@ public class Player {
     }
     public String toString(){
         return name;
+    }
+
+    private void buildDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void superpacDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void investDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void unmortgageDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void mortgageDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void statsDialogue() {
+        out.println("Balance: "+balance);
+        out.println("Properties: ");
+        for (Space a:spaces){
+            out.println(a);
+        }
+        out.println("Number of get out of jail free cards: "+getOutOfJailFreeCards);
     }
 }
