@@ -5,6 +5,7 @@
  */
 package com.berneytech.politopoly;
 
+import static java.lang.System.out;
 import java.util.Scanner;
 
 /**
@@ -34,15 +35,47 @@ public class otherSpace implements Space{
     }
 
     public void landedOn(Player player) {
-       /*if (type.equals("TAX")){
-           if (location==4){
-               out.println("Would you like to pay 10% or $200"){
-               if (getInput().equals("10%")){
-                   player.
-               }
-           }
-           }
-       }*/
+       
+        switch (type){
+            case "DONOTHING":
+                break;
+            case "COMMUNITYCHEST":
+                Card.drawCommunityChest(player);
+                break;
+            case "CHANCE":
+                Card.drawChance(player);
+                break;
+            case "TAX":
+                if(name.equals("LUXURY TAX")){
+                    player.setBalance(-75);
+                }
+                if(name.equals("INCOME TAX")){
+                    boolean decision=decision();
+                    out.println("Would you like to pay $200 or %10");
+                    if (decision){
+                        player.setBalance(-200);
+                    }
+                    else{
+                        player.setBalance((int) (player.getBalance()-.1*player.getBalance()));
+                    }
+                }
+                break;
+            case "GOTOJAIL":
+                player.setLocation(10);
+            default:
+                out.println("HMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+        Mechanics.setPlayer(player);
+        }
+   }
+    boolean decision(){
+        Scanner keyboard= new Scanner(System.in);
+        String a= keyboard.nextLine();
+        if (a.equals("$200")||a.equals("%10"))
+            return a.equals("$200");
+        else{
+            out.println("Not a valid input. Please type $200 or %10.");
+            return decision();
+        }
     }
     public String getInput(){
         Scanner keyboard = new Scanner(System.in);

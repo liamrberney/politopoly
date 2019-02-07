@@ -17,6 +17,8 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Player {
     List<Space> spaces;
+    boolean inJail;
+    int jailTurns;
     int balance;
     int location;
     String name;
@@ -28,6 +30,8 @@ public class Player {
         location=0;
         balance=1500;
         getOutOfJailFreeCards=0;
+        inJail=false;
+        jailTurns=0;
     }
     public void beginTurn(){
         diceRoll();
@@ -65,6 +69,10 @@ public class Player {
             }
         }
     }
+    void putInJail(){
+        inJail=true;
+        jailTurns=3;
+    }
     public String getInput(){
         Scanner keyboard = new Scanner(System.in);
         return keyboard.nextLine();
@@ -80,6 +88,12 @@ public class Player {
     }
     void setBalance(int x){
         balance=balance+x;
+    }
+    void setLocation(int x){
+        location=x;
+    }
+    int getLocation(){
+        return location;
     }
     void diceRoll(){
         dice=(int) ThreadLocalRandom.current().nextInt(1, 6 + 1)+ThreadLocalRandom.current().nextInt(1, 6 + 1);
