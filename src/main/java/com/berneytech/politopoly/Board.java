@@ -34,7 +34,7 @@ public class Board {
         spaces[4]= new otherSpace(4,"INCOME TAX","TAX");
         spaces[5]= new Property(5,"READING RAILROAD","RAILROAD",200,new int[]{25,50,100,200});
         spaces[6]= new Property(6,"ORIENTAL AVENUE","LIGHTBLUE",100,new int[]{6,30,90,270,400,550});
-        spaces[7]= new otherSpace(7,"CHANSE","CHANSE");
+        spaces[7]= new otherSpace(7,"CHANCE","CHANCE");
         spaces[8]= new Property(8,"VERMONT AVENUE","LIGHTBLUE",100,new int[]{6,30,90,270,400,550});
         spaces[9]= new Property(9,"CONNECTICUT AVENUE","LIGHTBLUE",120,new int[]{8,40,100,300,450,600});
         spaces[10]= new otherSpace(10,"JAIL","DONOTHING");
@@ -49,7 +49,7 @@ public class Board {
         spaces[19]= new Property(19,"NEW YORK AVENUE","ORANGE",200,new int[]{16,80,220,600,800,1000});
         spaces[20]= new otherSpace(20,"FREE PARKING","DONOTHING");
         spaces[21]= new Property(21,"KENTUCKY AVENUE","RED",220,new int[]{18,90,250,700,875,1050});
-        spaces[22]= new otherSpace(22,"CHANSE","CHANSE");
+        spaces[22]= new otherSpace(22,"CHANCE","CHANCE");
         spaces[23]= new Property(23,"INDIANA AVENUE","RED",220,new int[]{18,90,250,700,875,1050});
         spaces[24]= new Property(24,"ILLINOIS AVENUE","RED",240,new int[]{20,100,300,750,925,1100});
         spaces[25]= new Property(25,"B&O RAILROAD","RAILROAD",200,new int[]{25,50,100,200});
@@ -63,7 +63,7 @@ public class Board {
         spaces[33]= new otherSpace(33,"COMMUNITY CHEST","COMMUNITYCHEST");
         spaces[34]= new Property(34,"PENNSYLVANIA AVENUE","GREEN",320,new int[]{28,150,450,1000,1200,1400});
         spaces[35]= new Property(35,"SHORT LINE","RAILROAD",200,new int[]{25,50,100,200});
-        spaces[36]= new otherSpace(36,"CHANSE","CHANSE");
+        spaces[36]= new otherSpace(36,"CHANCE","CHANCE");
         spaces[37]= new Property(37,"PARK PLACE","BLUE",350,new int[]{35,175,500,1100,1300,1500});
         spaces[38]= new otherSpace(38,"LUXURY TAX","TAX");
         spaces[39]= new Property(39,"BOARDWALK","BLUE",400,new int[]{50,200,600,1400,1700,2000});
@@ -115,7 +115,7 @@ public class Board {
     public static Space getSpace(int x){
         return spaces[x];
     }
-    public static Card getComunityChest(int x){
+    static Card getCommunityChest(int x){
         return communityChest[x];
     }
     public static Card getChance(int x){
@@ -124,6 +124,8 @@ public class Board {
     public static void setSpace(Space space){
         spaces[space.getLocation()]=space;
     }
+
+    
     
     
 }
