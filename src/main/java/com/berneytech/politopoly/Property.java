@@ -87,10 +87,11 @@ public class Property implements Space{
                         owned=1;
                         players.get(1).setBalance(-price);
                         players.get(1).addSpace(this);
+                        owner=players.get(1);
                         Mechanics.setPlayer(players.get(1));
                     }
                     else{
-                        out.println("sorry, you're poor");
+                        out.println("I'm sorry you're poor");
                     }
                 }
                 if (indexOne==1){
@@ -98,10 +99,11 @@ public class Property implements Space{
                         owned=1;
                         players.get(0).setBalance(-price);
                         players.get(0).addSpace(this);
+                        owner=players.get(0);
                         Mechanics.setPlayer(players.get(0));
                     }
                     else{
-                        out.println("sorry, you're poor");
+                        out.println("I'm sorry you're poor");
                     }
                 }
             }
