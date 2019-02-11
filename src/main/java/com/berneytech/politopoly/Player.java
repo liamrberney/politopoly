@@ -7,6 +7,7 @@ package com.berneytech.politopoly;
 
 import static java.lang.System.out;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -34,7 +35,12 @@ public class Player {
         jailTurns=0;
     }
     public void beginTurn(){
+        int beforeRoll=location;
         diceRoll();
+        if (location<beforeRoll){
+            out.println("You have passed go. Collect $200");
+            balance+=200;
+        }
         out.println(name+" rolls a "+dice+" and lands on "+Board.getSpace(location).getName());
         Board.getSpace(location).landedOn(this);
         boolean turnEnded=false;
@@ -114,7 +120,6 @@ public class Player {
     public String toString(){
         return name;
     }
-
     private void buildDialogue() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -138,6 +143,7 @@ public class Player {
     private void statsDialogue() {
         out.println("Balance: "+balance);
         out.println("Properties: ");
+        Collections.sort(spaces, (a, b) -> a.compareTo(b));
         for (Space a:spaces){
             out.println(a);
         }

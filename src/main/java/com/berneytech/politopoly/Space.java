@@ -16,5 +16,5 @@ public interface Space {
     String getType();
     String getName();
     int getRent();
-    
+    int compareTo(Space x);
 }

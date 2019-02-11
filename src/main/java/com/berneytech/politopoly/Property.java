@@ -53,7 +53,14 @@ public class Property implements Space{
             buyDialogue(player);
         }
     }
-    
+    public int compareTo(Space x){
+        if (type.charAt(0)<x.getType().charAt(0))
+            return -1;
+        else if (type.charAt(0)==x.getType().charAt(0))
+            return 0;
+        return 1;
+        
+    }
     public int isOwned(){
         return owned;
     }
@@ -163,7 +170,7 @@ public class Property implements Space{
         Mechanics.setPlayer(winner);
     }
     public String toString(){
-        return name;
+        return "["+type+"] "+name;
     }
 
     @Override
