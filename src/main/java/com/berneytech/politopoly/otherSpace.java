@@ -85,4 +85,9 @@ public class otherSpace implements Space{
     public String getType() {
         return type;
     }
+
+    @Override
+    public int compareTo(Space x) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
