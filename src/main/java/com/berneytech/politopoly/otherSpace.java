@@ -50,13 +50,14 @@ public class otherSpace implements Space{
                     player.setBalance(-75);
                 }
                 if(name.equals("INCOME TAX")){
-                    boolean decision=decision();
                     out.println("Would you like to pay $200 or %10");
+                    boolean decision=decision();
+                    
                     if (decision){
                         player.setBalance(-200);
                     }
                     else{
-                        player.setBalance((int) (player.getBalance()-.1*player.getBalance()));
+                        player.setBalance((int) (-.1*player.getBalance()));
                     }
                 }
                 break;

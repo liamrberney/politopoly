@@ -7,6 +7,7 @@ package com.berneytech.politopoly;
 
 import static java.lang.System.out;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,8 +34,15 @@ public class Mechanics {
         }
     }
     public int getNumber(){
-        Scanner keyboard = new Scanner(System.in);
-        return keyboard.nextInt();
+        for(;;){
+            try{
+                Scanner keyboard = new Scanner(System.in);
+                return keyboard.nextInt();
+            }
+            catch (InputMismatchException e){
+                out.println("That ain't a number boi");
+            }
+        }   
     }
     public static List<Player> getPlayers(){
         return players;

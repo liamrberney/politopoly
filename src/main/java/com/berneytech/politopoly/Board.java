@@ -77,39 +77,39 @@ public class Board {
         chance[1]=new Card("ADVANCETOILLINOIS","MOVEMENT","Advance to Illinois Ave. If you pass Go, collect $200.",24,0);
         chance[2]=new Card("ADVANCETOST.CHARLESPLACE","MOVEMENT","Advance to St. Charles Place. If you pass Go, collect $200.",11,0);
         chance[3]=new Card("ADVANCETONEARESTRAILROAD","MOVEMENT","Advance token to the nearest Railroad and pay owner twice the rental to which he/she {he} is otherwise entitled.",24,2);
-        chance[4]=new Card("DIVIDEND","PAYMENT","Bank pays you dividend of $50.",-1,-50);
+        chance[4]=new Card("DIVIDEND","PAYMENT","Bank pays you dividend of $50.",-1,50);
         chance[5]=new Card("GETOUTOFJAILFREE","GETOUTOFJAILFREE","Get out of Jail Free. This card may be kept until needed, or traded/sold.",-1,0);
         chance[6]=new Card("GOBACK","GOBACK","Go back 3 spaces.",-3,0);
         chance[7]=new Card("JAIL","GOTOJAIL","Go to Jail. Go directly to Jail. Do not pass go. Do not collect $200",10,0);
         chance[8]=new Card("DOREPAIRS","REPAIRS","Make general repairs on all your property: For each house pay $25, For each hotel {pay} $100.",-1,0);
-        chance[9]=new Card("POORTAX","PAYMENT","Bank pays you dividend of $50.",-1,15);
+        chance[9]=new Card("POORTAX","PAYMENT","Bank pays you dividend of $50.",-1,50);
         chance[10]=new Card("RIDEREADING","MOVEMENT","Take a ride on the Reading. Advance token and} If you pass Go, collect $200.",5,0);
         chance[11]=new Card("ADVANCETOBOARDWALK","MOVEMENT","Take a walk on the Boardwalk. Advance to Boardwalk",39,0);
-        chance[12]=new Card("CHAIRMANOFBOARD","REDISTRIBUTION","You have been elected Chairman of the Board. Pay each player $50.",-1,50);
-        chance[13]=new Card("BUILDINGANDLOANMATURES","PAYMENT","Your building and loan matures. Collect $150",-1,-150);
-        chance[14]=new Card("CROSSWORD","PAYMENT","You won a crossword competition. Collect $100",-1,-100);
+        chance[12]=new Card("CHAIRMANOFBOARD","REDISTRIBUTION","You have been elected Chairman of the Board. Pay each player $50.",-1,-50);
+        chance[13]=new Card("BUILDINGANDLOANMATURES","PAYMENT","Your building and loan matures. Collect $150",-1,150);
+        chance[14]=new Card("CROSSWORD","PAYMENT","You won a crossword competition. Collect $100",-1,100);
         return chance;
     }//Go Back Three {3} Spaces.
     
     public static Card[] initializeCommunityChest() {
         Card[] communityChest= new Card[17];
         communityChest[0]= new Card("ADVANCETOGO","MOVEMENT","Advance to GO (Collect $200)",0,0);
-        communityChest[1]= new Card("BANK ERROR","PAYMENT","Bank error in your favor (Collect $200)",-1,-200);  
-        communityChest[2]= new Card("DOCTORFEE","PAYMENT","Doctor's fees. Pay $50",-1,50); 
-        communityChest[3]= new Card("STONK","PAYMENT","From sale of stock you get $50",-1,-50); 
+        communityChest[1]= new Card("BANK ERROR","PAYMENT","Bank error in your favor (Collect $200)",-1,200);  
+        communityChest[2]= new Card("DOCTORFEE","PAYMENT","Doctor's fees. Pay $50",-1,-50); 
+        communityChest[3]= new Card("STONK","PAYMENT","From sale of stock you get $50",-1,50); 
         communityChest[4]= new Card("GETOUTOFJAILFREE","GETOUTOFJAILFREE","Get out of Jail Free. This card may be kept until needed, or traded/sold.",-1,0);
         communityChest[5]= new Card("JAIL","GOTOJAIL","Go to Jail. Go directly to Jail. Do not pass go. Do not collect $200",10,0);
-        communityChest[6]= new Card("OPERANIGHT","REDISTRIBUTION","Grand Opera Night. Collect $50 from every player for opening night seats.",-1,-50);
-        communityChest[7]= new Card("XMAS","PAYMENT","Xmas fund matures. Collect $100",-1,-100);  
-        communityChest[8]= new Card("INCOMEREFUND","PAYMENT","Income tax refund. Collect $20",-1,-20);  
-        communityChest[9]= new Card("BIRTHDAY","REDISTRIBUTION","It's your birthday. Collect $10 from every player",-1,-50);
-        communityChest[10]= new Card("LIFEINSURANCE","PAYMENT","Life insurance matures. Collect $100",-1,-100);  
+        communityChest[6]= new Card("OPERANIGHT","REDISTRIBUTION","Grand Opera Night. Collect $50 from every player for opening night seats.",-1,50);
+        communityChest[7]= new Card("XMAS","PAYMENT","Xmas fund matures. Collect $100",-1,100);  
+        communityChest[8]= new Card("INCOMEREFUND","PAYMENT","Income tax refund. Collect $20",-1,20);  
+        communityChest[9]= new Card("BIRTHDAY","REDISTRIBUTION","It's your birthday. Collect $10 from every player",-1,10);
+        communityChest[10]= new Card("LIFEINSURANCE","PAYMENT","Life insurance matures. Collect $100",-1,100);  
         communityChest[11]= new Card("HOSPITALFEE","PAYMENT","Hospital Fees. Pay $50",-1,50); 
         communityChest[12]= new Card("SCHOOLFEE","PAYMENT","School Fees. Pay $50",-1,50); 
-        communityChest[13]= new Card("CONSULTANCY","PAYMENT","Recieve a $25 consultancy fee.",-1,-25); 
+        communityChest[13]= new Card("CONSULTANCY","PAYMENT","Recieve a $25 consultancy fee.",-1,25); 
         communityChest[14]= new Card("STREETREPAIRS","STREETREPAIRS","Make general repairs on all your property: For each house pay $40, For each hotel {pay} $115.",-1,0);
-        communityChest[15]= new Card("BEAUTYCONTEST","PAYMENT","You have won second place in a beauty contest. Collect $10",-1,-10); 
-        communityChest[16]= new Card("INHERITANCE","PAYMENT","You inherit $100",-1,-100); 
+        communityChest[15]= new Card("BEAUTYCONTEST","PAYMENT","You have won second place in a beauty contest. Collect $10",-1,10); 
+        communityChest[16]= new Card("INHERITANCE","PAYMENT","You inherit $100",-1,100); 
         return communityChest;
     }
     public static Space getSpace(int x){

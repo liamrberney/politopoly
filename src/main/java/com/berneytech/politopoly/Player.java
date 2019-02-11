@@ -83,6 +83,9 @@ public class Player {
     void addSpace(Space space){
         spaces.add(space);
     }
+    void setGetOutOfJailFree(int x){
+        getOutOfJailFreeCards+=1;
+    }
     void passGo(){
         balance+=200;
     }
