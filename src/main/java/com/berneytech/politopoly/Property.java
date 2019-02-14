@@ -15,7 +15,6 @@ import java.util.Scanner;
  * @author bernelia000
  */
 public class Property implements Space{
-    int rentStatus;
     int location;
     String name;
     String type;
@@ -33,7 +32,6 @@ public class Property implements Space{
     this.buildings=0;
     this.owned=0;
     this.rent=rent;
-    this.rentStatus=0;
     }
     public String getName(){
         return name;
@@ -42,7 +40,7 @@ public class Property implements Space{
         return location;
     }
     public int getRent(){
-        return rent[rentStatus];
+        return rent[buildings];
     }
     
     public void landedOn(Player player) {
@@ -68,7 +66,7 @@ public class Property implements Space{
         int paidrent=rent[0];
         player.setBalance(-paidrent);
         owner.setBalance(paidrent);
-        out.println(player+" pays "+owner+" $"+rent[rentStatus]+" for rent");
+        out.println(player+" pays "+owner+" $"+rent[buildings]+" for rent");
     }
     void buyDialogue(Player player){
         List<Player> players= new ArrayList(Mechanics.getPlayers());
@@ -81,6 +79,7 @@ public class Property implements Space{
                 owner=player;
                 player.setBalance(-price);
                 player.addSpace(this);
+                player.updateBuildings(type);
                 Mechanics.setPlayer(player);
             }
         }
@@ -119,8 +118,8 @@ public class Property implements Space{
             }
         }
     }
-    void buyDialogue2(){
-        
+    public void setBuildings(int x){
+        buildings=x;  
     }
     boolean decision(){
         Scanner keyboard= new Scanner(System.in);

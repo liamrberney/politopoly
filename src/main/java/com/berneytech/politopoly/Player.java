@@ -149,4 +149,17 @@ public class Player {
         }
         out.println("Number of get out of jail free cards: "+getOutOfJailFreeCards);
     }
+    void updateBuildings(String type){
+        int x=0;
+        if (type.equals("BROWN")||type.equals("BLUE")||type.equals("RAILROAD")){
+            if (type.equals("RAILROAD")){
+                for (int y=0; y<spaces.size();y++){
+                    if (type.equals("RAILROAD")){
+                        x++; spaces.get(y).setBuildings(x);
+                    }
+                        
+                }
+            }
+        }
+    }
 }

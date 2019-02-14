@@ -53,7 +53,7 @@ public class Card {
         
 
     static void drawChance(Player player) {
-        Card a= Board.getChance((int)(Math.random()*18));
+        Card a= Board.getChance((int)(Math.random()*16));
         out.println(a.getName());
         out.println(a.getText());
         if (a.getSendTo()==-1){
