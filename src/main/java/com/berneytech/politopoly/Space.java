@@ -17,4 +17,5 @@ public interface Space {
     String getName();
     int getRent();
     int compareTo(Space x);
+    void setBuildings(int x);
 }

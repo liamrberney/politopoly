@@ -53,7 +53,7 @@ public class Card {
         
 
     static void drawChance(Player player) {
-        Card a= Board.getChance((int)(Math.random()*18));
+        Card a= Board.getChance((int)(Math.random()*16));
         out.println(a.getName());
         out.println(a.getText());
         if (a.getSendTo()==-1){
@@ -62,7 +62,13 @@ public class Card {
                 player.setBalance(a.getRent());
                 break;
                 case "REDISTRIBUTION":
-                    List b= new ArrayList(Mechanics.getPlayers());
+                    List<Player> b= new ArrayList(Mechanics.getPlayers());
+                    player.setBalance(a.getRent()*(b.size()-1));
+                    for (Player c : b){
+                        c.setBalance(a.getRent()*-1);
+                        Mechanics.setPlayer(c);
+                    }
+                    Mechanics.setPlayer(player);
                 case "GETOUTOFJAILFREE":
                     player.setGetOutOfJailFree(1);
                     break;
@@ -88,6 +94,7 @@ public class Card {
                 player.putInJail();
             }
         }
+        Mechanics.setPlayer(player);
      
         
     }
