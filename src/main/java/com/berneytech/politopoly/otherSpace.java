@@ -63,6 +63,7 @@ public class otherSpace implements Space{
                 break;
             case "GOTOJAIL":
                 player.setLocation(10);
+                player.putInJail();
             default:
                 out.println("HMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
         Mechanics.setPlayer(player);

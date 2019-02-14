@@ -35,43 +35,60 @@ public class Player {
         jailTurns=0;
     }
     public void beginTurn(){
+        if (inJail){
+            boolean isDoubles=diceRoll();
+            if (isDoubles){
+                inJail=false; jailTurns=0;beginTurn();
+            }
+            if (jailTurns==0){
+                setBalance(-50);
+                inJail=false; beginTurn();
+            }
+            else{
+                jailTurns--;
+            }
+        }
         int beforeRoll=location;
-        diceRoll();
+        boolean isDoubles=diceRoll();
         if (location<beforeRoll){
             out.println("You have passed go. Collect $200");
             balance+=200;
         }
         out.println(name+" rolls a "+dice+" and lands on "+Board.getSpace(location).getName());
         Board.getSpace(location).landedOn(this);
-        boolean turnEnded=false;
-        while(!turnEnded){
-            out.print("Would "+name+" like to build[build], donate to superpac[superpac], \n"
-                    + "invest[invest], mortgage[mortgage], unmortgage[unmortage], get stats[stats], or end turn[end]:");
-            String a=getInput();
-            switch(a){
-                case "build":
-                    buildDialogue();
-                    break;
-                case "superpac":
-                    superpacDialogue();
-                    break;
-                case "invest":
-                    investDialogue();
-                    break;
-                case "mortgage":
-                    mortgageDialogue();
-                    break;
-                case "unmortgage":
-                    unmortgageDialogue();
-                    break;
-                case "end":
-                    turnEnded=true;
-                    break;
-                case "stats":
-                    statsDialogue();
-                    break;
-                default:
-                    out.println("Sorry, your answer sucked. Try again.");
+        if (isDoubles)
+            beginTurn();
+        else{
+            boolean turnEnded=false;
+            while(!turnEnded){
+                out.print("Would "+name+" like to build[build], donate to superpac[superpac], \n"
+                        + "invest[invest], mortgage[mortgage], unmortgage[unmortage], get stats[stats], or end turn[end]:");
+                String a=getInput();
+                switch(a){
+                    case "build":
+                        buildDialogue();
+                        break;
+                    case "superpac":
+                        superpacDialogue();
+                        break;
+                    case "invest":
+                        investDialogue();
+                        break;
+                    case "mortgage":
+                        mortgageDialogue();
+                        break;
+                    case "unmortgage":
+                        unmortgageDialogue();
+                        break;
+                    case "end":
+                        turnEnded=true;
+                        break;
+                    case "stats":
+                        statsDialogue();
+                        break;
+                    default:
+                        out.println("Sorry, your answer sucked. Try again.");
+                }
             }
         }
     }
@@ -104,13 +121,16 @@ public class Player {
     int getLocation(){
         return location;
     }
-    void diceRoll(){
-        dice=(int) ThreadLocalRandom.current().nextInt(1, 6 + 1)+ThreadLocalRandom.current().nextInt(1, 6 + 1);
+    boolean diceRoll(){
+        int a= ThreadLocalRandom.current().nextInt(1, 6 + 1);
+        int b= ThreadLocalRandom.current().nextInt(1, 6 + 1);
+        dice=a+b;
         out.println(dice);
         if(location+dice>39)
             location+=dice-40;
         else
             location+=dice;
+        return a==b;
     }
     boolean equals(){
         return  balance==balance &&
