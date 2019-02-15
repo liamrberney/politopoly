@@ -34,19 +34,40 @@ public class Player {
         inJail=false;
         jailTurns=0;
     }
+    boolean decision(){
+        Scanner keyboard= new Scanner(System.in);
+        String a= keyboard.nextLine();
+        if (a.equals("yes")||a.equals("no"))
+            return a.equals("yes");
+        else{
+            out.println("Not a valid input. Please type yes or no.");
+            return decision();
+        }
+    }
     public void beginTurn(){
         if (inJail){
-            boolean isDoubles=diceRoll();
-            if (isDoubles){
-                inJail=false; jailTurns=0;beginTurn();
-            }
             if (jailTurns==0){
                 setBalance(-50);
                 inJail=false; beginTurn();
             }
             else{
-                jailTurns--;
+                out.println("Would "+name+" like to pay $50 to get out of jail? [yes]/[no]");
+                if (decision()){
+                    inJail=false;  jailTurns=0; beginTurn();
+                }
+                else{
+                    boolean isDoubles=diceRoll();
+                    if (isDoubles){
+                        inJail=false; jailTurns=0;beginTurn();
+                    }
+                    else{
+                        jailTurns--;
+                    }   
+                }
             }
+            
+            
+            
         }
         int beforeRoll=location;
         boolean isDoubles=diceRoll();
@@ -173,13 +194,70 @@ public class Player {
         int x=0;
         if (type.equals("BROWN")||type.equals("BLUE")||type.equals("RAILROAD")){
             if (type.equals("RAILROAD")){
+                x=-1;
                 for (int y=0; y<spaces.size();y++){
                     if (type.equals("RAILROAD")){
-                        x++; spaces.get(y).setBuildings(x);
+                        x++; //spaces.get(y).setBuildings(x);
                     }
-                        
+                    
+                }
+            }
+            else{
+                for (int y=0; y<spaces.size(); y++){
+                    int q=0;
+                    if (spaces.get(y).getType().equals(type)){
+                        q++;
+                        if (q==2){
+                            x++;
+                        }
+                    }
                 }
             }
         }
+        else{
+            for (int y=0; y<spaces.size();y++){
+                int q=0;
+                if (spaces.get(y).getType().equals(type)){
+                    q++;
+                    if (q==3){
+                        x++;
+                    }
+                }
+            }          
+        }
+        
+        if (type.equals("BROWN")||type.equals("BLUE")||type.equals("RAILROAD")){
+            if (type.equals("RAILROAD")){
+                for (int y=0; y<spaces.size();y++){
+                    if (type.equals("RAILROAD")){
+                        spaces.get(y).setBuildings(x);
+                    }
+                    
+                }
+            }
+            else{
+                for (int y=0; y<spaces.size(); y++){
+                    int q=0;
+                    if (spaces.get(y).getType().equals(type)){
+                        q++;
+                        if (q==2){
+                            spaces.get(y).setBuildings(x);
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            for (int y=0; y<spaces.size();y++){
+                int q=0;
+                if (spaces.get(y).getType().equals(type)){
+                    q++;
+                    if (q==3){
+                        spaces.get(y).setBuildings(x);
+                    }
+                }
+            }          
+        }
     }
 }
+

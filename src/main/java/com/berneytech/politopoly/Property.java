@@ -177,4 +177,5 @@ public class Property implements Space{
         return type;
     }
     
+    
 }
