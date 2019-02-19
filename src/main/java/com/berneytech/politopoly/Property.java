@@ -63,7 +63,7 @@ public class Property implements Space{
         return owned;
     }
     void payRent(Player player){
-        int paidrent=rent[0];
+        int paidrent=rent[buildings];
         player.setBalance(-paidrent);
         owner.setBalance(paidrent);
         out.println(player+" pays "+owner+" $"+rent[buildings]+" for rent");
