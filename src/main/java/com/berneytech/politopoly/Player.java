@@ -25,6 +25,7 @@ public class Player {
     String name;
     int dice;
     int getOutOfJailFreeCards;
+    int superBalance;
     public Player(String name){
         this.name=name;
         spaces= new ArrayList<>();
@@ -33,6 +34,7 @@ public class Player {
         getOutOfJailFreeCards=0;
         inJail=false;
         jailTurns=0;
+        List superBalances;
     }
     boolean decision(){
         Scanner keyboard= new Scanner(System.in);
