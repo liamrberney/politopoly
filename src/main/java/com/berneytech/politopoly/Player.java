@@ -18,6 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Player {
     List<Space> spaces;
+    List<Space> mortgagedSpaces;
     boolean inJail;
     int jailTurns;
     int balance;
@@ -25,7 +26,8 @@ public class Player {
     String name;
     int dice;
     int getOutOfJailFreeCards;
-    int superBalance;
+    List<financialAccount> superBalances;
+    List<financialAccount> investmumpts;
     public Player(String name){
         this.name=name;
         spaces= new ArrayList<>();
@@ -34,7 +36,8 @@ public class Player {
         getOutOfJailFreeCards=0;
         inJail=false;
         jailTurns=0;
-        List superBalances;
+        superBalances=new ArrayList<>();
+        investmumpts=new ArrayList<>();
     }
     boolean decision(){
         Scanner keyboard= new Scanner(System.in);
@@ -85,7 +88,7 @@ public class Player {
             boolean turnEnded=false;
             while(!turnEnded){
                 out.print("Would "+name+" like to build[build], donate to superpac[superpac], \n"
-                        + "invest[invest], mortgage[mortgage], unmortgage[unmortage], get stats[stats], or end turn[end]:");
+                        + "invest[invest], mortgage[mortgage], unmortgage[unmortage], play the lottery[lottery], get stats[stats], or end turn[end]:");
                 String a=getInput();
                 switch(a){
                     case "build":
@@ -103,6 +106,9 @@ public class Player {
                     case "unmortgage":
                         unmortgageDialogue();
                         break;
+                    case "lottery":
+                        lotteryTicket();
+                        break;
                     case "end":
                         turnEnded=true;
                         break;
@@ -114,10 +120,34 @@ public class Player {
                 }
             }
         }
+        for (int x=0; x<superBalances.size();x++){
+            superBalances.get(x).updateTurns();
+            if (superBalances.get(x).getTurns()<=0){
+                out.println("Superpac donation of "+superBalances.get(x).getAmount()+" has expired for "+name);
+                superBalances.remove(x);     
+            }
+        }
+        for (int x=0; x<investmumpts.size();x++){
+            investmumpts.get(x).updateTurns();
+            if (investmumpts.get(x).getTurns()==0){
+                out.println(name+" sells his stonks for "+ investmumpts.get(x).getAmount());
+                investmumpts.remove(x);     
+            }
+        }
     }
     void putInJail(){
         inJail=true;
         jailTurns=3;
+    }
+    public void lotteryTicket(){
+        balance-=100;
+        if (rollDice()==7 && rollDice()==7 && rollDice()==7){
+            balance+=100*100; out.println("Congratulations! You've won $10 THOUSAND dollars");
+        }
+        else{
+            out.println("Better luck next time");
+        }
+                                 
     }
     public String getInput(){
         Scanner keyboard = new Scanner(System.in);
@@ -163,16 +193,33 @@ public class Player {
     public String toString(){
         return name;
     }
+    public int rollDice(){
+        int a= ThreadLocalRandom.current().nextInt(1, 6 + 1);
+        int b= ThreadLocalRandom.current().nextInt(1, 6 + 1);
+        return a+b;
+    }
     private void buildDialogue() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void superpacDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        out.println("How much money are you donating? (Worth 10x @ Elections for 4 turns)");
+        superBalances.add(new financialAccount(donation()));
+        
+    }
+    int donation(){
+        Scanner keyboard= new Scanner(System.in);
+        try {
+        return keyboard.nextInt();}
+        catch(Exception e){
+            out.println("Sorry, your answer sucked.");
+            return donation();
+        }
     }
 
     private void investDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        out.println("How much money are you investing this turn (9% intrest compounded every turn for 4 turns.");
+        investmumpts.add(new financialAccount(donation()));
     }
 
     private void unmortgageDialogue() {
