@@ -9,17 +9,23 @@ package com.berneytech.politopoly;
  *
  * @author bernelia000
  */
-public class superBalance {
+public class financialAccount {
     int turns; 
     int amount;
-    public superBalance(int x){
+    public financialAccount(int x){
         turns=4;
         amount=x;
     }
     void updateTurns(){
-        if (turns<=0){
-            amount=0;
-        }
         turns--;
+    }
+    int getTurns(){
+        return turns;
+    }
+    int getAmount(){
+        return amount;
+    }
+    void setBalance(int amount){
+        this.amount=amount;
     }
 }
