@@ -140,6 +140,7 @@ public class Player {
         jailTurns=3;
     }
     public void lotteryTicket(){
+        if (balanceCheck()){
         balance-=100;
         if (rollDice()==7 && rollDice()==7 && rollDice()==7){
             balance+=100*100; out.println("Congratulations! You've won $10 THOUSAND dollars");
@@ -147,7 +148,10 @@ public class Player {
         else{
             out.println("Better luck next time");
         }
-                                 
+        }
+        else{
+            out.println("stop being poor");
+        }                         
     }
     public String getInput(){
         Scanner keyboard = new Scanner(System.in);
@@ -167,6 +171,9 @@ public class Player {
     }
     void setBalance(int x){
         balance=balance+x;
+    }
+    boolean balanceCheck(){
+        return balance>0;
     }
     void setLocation(int x){
         location=x;
@@ -204,7 +211,14 @@ public class Player {
 
     private void superpacDialogue() {
         out.println("How much money are you donating? (Worth 10x @ Elections for 4 turns)");
-        superBalances.add(new financialAccount(donation()));
+        int x=donation();
+        if (balance-x>0){
+        superBalances.add(new financialAccount(x));
+        balance-=x;
+        }
+        else{
+            out.println("stop being poor");
+        }
         
     }
     int donation(){
@@ -219,7 +233,14 @@ public class Player {
 
     private void investDialogue() {
         out.println("How much money are you investing this turn (9% intrest compounded every turn for 4 turns.");
-        investmumpts.add(new financialAccount(donation()));
+        int x=donation();
+        if (balance-x>0){
+        investmumpts.add(new financialAccount(x));
+        balance-=x;
+        }
+        else{
+            out.println("stop being poor");
+        }
     }
 
     private void unmortgageDialogue() {

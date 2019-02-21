@@ -82,6 +82,9 @@ public class Property implements Space{
                 player.updateBuildings(type);
                 Mechanics.setPlayer(player);
             }
+            else{
+                out.println("stop being poor");
+            }
         }
         else{ 
             if (Mechanics.getNumPlayers()==2){
