@@ -50,6 +50,22 @@ public class Player {
         }
     }
     public void beginTurn(){
+        for (int x=0; x<superBalances.size();x++){
+            superBalances.get(x).updateTurns();
+            if (superBalances.get(x).getTurns()<=0){
+                out.println("Superpac donation of "+superBalances.get(x).getAmount()+" has expired for "+name);
+                superBalances.remove(x);     
+            }
+        }
+        for (int x=0; x<investmumpts.size();x++){
+            investmumpts.get(x).updateTurns();
+            investmumpts.get(x).setBalance((int)(investmumpts.get(x).getAmount()*1.09));
+            if (investmumpts.get(x).getTurns()==0){
+                out.println(name+" sells his stonks for "+ investmumpts.get(x).getAmount());
+                balance+=investmumpts.get(x).getAmount();
+                investmumpts.remove(x);     
+            }
+        }
         if (inJail){
             if (jailTurns==0){
                 setBalance(-50);
@@ -120,20 +136,7 @@ public class Player {
                 }
             }
         }
-        for (int x=0; x<superBalances.size();x++){
-            superBalances.get(x).updateTurns();
-            if (superBalances.get(x).getTurns()<=0){
-                out.println("Superpac donation of "+superBalances.get(x).getAmount()+" has expired for "+name);
-                superBalances.remove(x);     
-            }
-        }
-        for (int x=0; x<investmumpts.size();x++){
-            investmumpts.get(x).updateTurns();
-            if (investmumpts.get(x).getTurns()==0){
-                out.println(name+" sells his stonks for "+ investmumpts.get(x).getAmount());
-                investmumpts.remove(x);     
-            }
-        }
+        
     }
     void putInJail(){
         inJail=true;

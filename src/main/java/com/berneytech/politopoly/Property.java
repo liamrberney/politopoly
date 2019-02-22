@@ -66,6 +66,8 @@ public class Property implements Space{
         int paidrent=rent[buildings];
         player.setBalance(-paidrent);
         owner.setBalance(paidrent);
+        Mechanics.setPlayer(owner);
+        Mechanics.setPlayer(player);
         out.println(player+" pays "+owner+" $"+rent[buildings]+" for rent");
     }
     void buyDialogue(Player player){
@@ -73,20 +75,17 @@ public class Property implements Space{
         
         out.println("Would "+player+" like to buy "+name+" for "+price+"? [yes/no]");
         boolean decision=decision();
-        if (decision){
-            if(player.getBalance()>price){
+        if (decision && player.getBalance()>=price){
                 owned=1;
                 owner=player;
                 player.setBalance(-price);
                 player.addSpace(this);
                 player.updateBuildings(type);
                 Mechanics.setPlayer(player);
-            }
-            else{
-                out.println("stop being poor");
-            }
         }
-        else{ 
+        else{
+            if (!(player.getBalance()>=price))
+                out.println("stop being poor.");
             if (Mechanics.getNumPlayers()==2){
                 out.println("Would the other player like to buy "+name+" for "+price+"? [yes/no]");
                 int indexOne=Mechanics.getPlayerIndex(player);

@@ -64,6 +64,10 @@ public class otherSpace implements Space{
             case "GOTOJAIL":
                 player.setLocation(10);
                 player.putInJail();
+                break;
+            case "ELECTION":
+                electionDialogue();
+                break;
             default:
                 out.println("HMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
         Mechanics.setPlayer(player);
@@ -94,6 +98,10 @@ public class otherSpace implements Space{
 
     @Override
     public void setBuildings(int x) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void electionDialogue() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
