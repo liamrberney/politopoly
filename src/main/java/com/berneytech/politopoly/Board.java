@@ -39,7 +39,7 @@ public class Board {
         spaces[9]= new Property(9,"CONNECTICUT AVENUE","LIGHTBLUE",120,new int[]{8,40,100,300,450,600});
         spaces[10]= new otherSpace(10,"JAIL","DONOTHING");
         spaces[11]= new Property(11,"ST. CHARLES PLACE","PURPLE",140,new int[]{10,50,150,450,625,750});
-        spaces[12]= new Property(12,"ELECTRIC COMPANY","UTILITY",150,new int[]{4,12});
+        spaces[12]= new otherSpace(12,"ELECTIONS","ELECTIONS");
         spaces[13]= new Property(13,"STATES AVENUE","PURPLE",140,new int[]{10,50,150,450,625,750});
         spaces[14]= new Property(14,"VIRGINIA AVENUE","PURPLE",160,new int[]{11,60,180,500,700,900});
         spaces[15]= new Property(15,"PENNSYLVANIA RAILROAD","RAILROAD",200,new int[]{25,50,100,200});
@@ -55,7 +55,7 @@ public class Board {
         spaces[25]= new Property(25,"B&O RAILROAD","RAILROAD",200,new int[]{25,50,100,200});
         spaces[26]= new Property(26,"ATLANTIC AVENUE","YELLOW",260,new int[]{22,110,330,800,975,1150});
         spaces[27]= new Property(27,"VENTNOR AVENUE","YELLOW",260,new int[]{22,110,330,800,975,1150});
-        spaces[28]= new Property(28,"WATER WORKS","UTILITY",150,new int[]{4,12});
+        spaces[28]= new otherSpace(28,"MIDTERMS","ELECTIONS");
         spaces[29]= new Property(29,"MARVIN GARDENS","YELLOW",280,new int[]{24,120,360,850,1025,1200});
         spaces[30]= new otherSpace(30,"GO TO JAIL","GOTOJAIL");
         spaces[31]= new Property(31,"PACIFIC AVENUE","GREEN",300,new int[]{26,130,390,900,1100,1275});
