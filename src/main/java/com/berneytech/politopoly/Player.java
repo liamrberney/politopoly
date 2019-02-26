@@ -142,6 +142,13 @@ public class Player {
         inJail=true;
         jailTurns=3;
     }
+    int getSuperBalance(){
+        int x=0;
+        for (financialAccount a:superBalances){
+            x+=a.getAmount();
+        }
+        return x*10;
+    }
     public void lotteryTicket(){
         if (balanceCheck()){
         balance-=100;
@@ -232,6 +239,9 @@ public class Player {
             out.println("Sorry, your answer sucked.");
             return donation();
         }
+    }
+    String getName(){
+        return name;
     }
 
     private void investDialogue() {
