@@ -6,6 +6,8 @@
 package com.berneytech.politopoly;
 
 import static java.lang.System.out;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -100,8 +102,31 @@ public class otherSpace implements Space{
     public void setBuildings(int x) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    int contribution(){
+        Scanner keyboard= new Scanner(System.in);
+        try {
+        return keyboard.nextInt();}
+        catch(Exception e){
+            out.println("Sorry, your answer sucked.");
+            return contribution();
+        }
+    }
 
     private void electionDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Player> players= new ArrayList<Player>(Mechanics.getPlayers());
+        int[] donations=new int[Mechanics.getNumPlayers()];
+        out.println("Election time! All unexpired superpac donations are worth 10x");
+        for (int x=0; x<players.size(); x++){
+            out.print("How much will "+players.get(x).getName() + " contribute?: ");
+            int contribution=contribution();
+            donations[x]=players.get(x).getSuperBalance()+contribution;
+            players.get(x).setBalance(-contribution);
+            out.println("\n\n\n\n\n\n");
+            Mechanics.setPlayers(players);
+        }
+        int max=0;
+        for (int x=0; x<donations.length;x++){
+            if (donations[x]>0
+        }
     }
 }
