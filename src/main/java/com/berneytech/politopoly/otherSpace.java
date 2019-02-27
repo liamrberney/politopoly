@@ -112,8 +112,8 @@ public class otherSpace implements Space{
         }
     }
 
-    private void electionDialogue() {
-        List<Player> players= new ArrayList<Player>(Mechanics.getPlayers());
+     void electionDialogue() {
+        List<Player> players= new ArrayList<>(Mechanics.getPlayers());
         int[] donations=new int[Mechanics.getNumPlayers()];
         out.println("Election time! All unexpired superpac donations are worth 10x");
         for (int x=0; x<players.size(); x++){
@@ -122,11 +122,97 @@ public class otherSpace implements Space{
             donations[x]=players.get(x).getSuperBalance()+contribution;
             players.get(x).setBalance(-contribution);
             out.println("\n\n\n\n\n\n");
-            Mechanics.setPlayers(players);
+            Mechanics.setPlayers((ArrayList<Player>) players);
         }
         int max=0;
+        int maxIndex=0;
         for (int x=0; x<donations.length;x++){
-            if (donations[x]>0
+            if (donations[x]>max){
+                max=donations[x]; maxIndex=x;
+                
+            }
         }
+        out.println(players.get(maxIndex).getName()+" wins the election!");
+        winnerDialogue(players.get(maxIndex));
+    }
+
+    private void winnerDialogue(Player player) {
+        out.println("What kind of bill would you like to create: \n"
+                + "redistribution [r], taxation [tax] , building maintenance [bm], railroad regulation [rr], \n"
+                + "railroad deregulation [rd] , property forclosure [p], low income housing subsidies [hs], or tarrifs[t]?");
+        switch (bill()){
+            case "r":
+                redistributionDialouge();
+                break;
+            case "tax":
+                taxDialogue();
+                break;
+            case "bm":
+                maintenanceDialogue();
+                break;
+            case "rr":
+                regulationDialogue();
+                break;
+            case "rd":
+                deregulationDialogue();
+                break;
+            case "pf":
+                forclosureDialogue();
+                break;
+            case "hs":
+                subsidiesDialogue();
+                break;
+            case "t":
+                tarrifsDialogue();
+                break;
+            default:
+                out.println("Sorry, your answer sucked.");
+                winnerDialogue(player);
+                
+                
+                
+        }
+    }
+    
+    String bill(){
+        Scanner keyboard= new Scanner(System.in);
+        try {
+        return keyboard.nextLine();}
+        catch(Exception e){
+            out.println("Sorry, your answer sucked.");
+            return bill();
+        }
+    }
+
+    private void redistributionDialouge() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void taxDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void maintenanceDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void regulationDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void deregulationDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void forclosureDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void subsidiesDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void tarrifsDialogue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
