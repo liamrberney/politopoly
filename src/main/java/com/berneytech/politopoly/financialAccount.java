@@ -28,4 +28,7 @@ public class financialAccount {
     void setBalance(int amount){
         this.amount=amount;
     }
+    void marketCrash(){
+        amount/=2;
+    }
 }
