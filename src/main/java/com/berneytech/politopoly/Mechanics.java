@@ -18,7 +18,9 @@ import java.util.Scanner;
 public class Mechanics {
     public Board board;
     public static List<Player> players;
+    public static int railroadMultiplier;
     public Mechanics(){
+        railroadMultiplier=1;
         players=new ArrayList<>();
         out.print("How many players?: ");
         int y=getNumber();
@@ -32,6 +34,12 @@ public class Mechanics {
             if (x==players.size()-1)
                 x-=players.size();
         }
+    }
+    static void regulate(){
+        railroadMultiplier*=.5;
+    }
+    static void deregulate(){
+        railroadMultiplier*=2;
     }
     public int getNumber(){
         for(;;){

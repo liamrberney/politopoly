@@ -145,7 +145,7 @@ public class otherSpace implements Space{
                 redistributionDialouge();
                 break;
             case "tax":
-                taxDialogue();
+                taxDialogue(player);
                 break;
             case "bm":
                 maintenanceDialogue();
@@ -185,11 +185,34 @@ public class otherSpace implements Space{
     }
 
     private void redistributionDialouge() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Player> players= new ArrayList<>(Mechanics.getPlayers());
+        int total=0;
+        for (Player player:players){
+            total+=player.getBalance();
+        }
+        for (Player player:players){
+            player.changeBalance(total/players.size());
+            Mechanics.setPlayer(player);
+        }
     }
 
-    private void taxDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void taxDialogue(Player winner) {
+        List<Player> players= new ArrayList<>(Mechanics.getPlayers());
+        for (int x=0; x<players.size();x++){
+            if (players.get(x).equals(winner)){
+                 players.remove(x);
+            }
+        }
+        int total=0;
+        for (Player player: players){
+            int tax=(int)(.2*player.getBalance());
+            total+=tax;
+            player.setBalance(-tax);
+            Mechanics.setPlayer(player);
+        }
+        winner.setBalance(total);
+        Mechanics.setPlayer(winner);
+        
     }
 
     private void maintenanceDialogue() {
@@ -197,11 +220,13 @@ public class otherSpace implements Space{
     }
 
     private void regulationDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        out.println("Railroad tickets got halved in price!");
+        Mechanics.regulate();
     }
 
     private void deregulationDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        out.println("Railroad tickets doubled in price!");
+        Mechanics.deregulate();
     }
 
     private void forclosureDialogue() {
@@ -213,6 +238,11 @@ public class otherSpace implements Space{
     }
 
     private void tarrifsDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        out.println("You decided to start a trade war with China. Market crashes by 50%");
+        List<Player> players= new ArrayList<>(Mechanics.getPlayers());
+        for (Player player:players){
+            player.marketCrash();
+            Mechanics.setPlayer(player);
+        }
     }
 }

@@ -49,6 +49,12 @@ public class Player {
             return decision();
         }
     }
+    
+    public void marketCrash(){
+         for (int x=0; x<investmumpts.size();x++){
+            investmumpts.get(x).marketCrash();
+        }
+    }
     public void beginTurn(){
         for (int x=0; x<superBalances.size();x++){
             superBalances.get(x).updateTurns();
@@ -209,6 +215,9 @@ public class Player {
     }
     public String toString(){
         return name;
+    }
+    public void changeBalance(int balance){
+        this.balance=balance;
     }
     public int rollDice(){
         int a= ThreadLocalRandom.current().nextInt(1, 6 + 1);
