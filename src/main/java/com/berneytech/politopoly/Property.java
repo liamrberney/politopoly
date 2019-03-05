@@ -23,8 +23,9 @@ public class Property implements Space{
     int buildings; //0=rent,1=1 house, etc. 5=hotel
     int owned;
     Player owner;
+    int houseCost;
     
-    public Property(int location, String name, String type, int price, int[] rent){
+    public Property(int location, String name, String type, int price, int[] rent, int houseCost){
     this.location=location;
     this.name=name;
     this.type=type;
@@ -32,6 +33,7 @@ public class Property implements Space{
     this.buildings=0;
     this.owned=0;
     this.rent=rent;
+    this.houseCost=houseCost;
     }
     public String getName(){
         return name;
@@ -177,6 +179,15 @@ public class Property implements Space{
     @Override
     public String getType() {
         return type;
+    }
+
+    public int getBuildings(){
+        return buildings;
+    }
+
+    @Override
+    public int getHouseCost() {
+        return houseCost;
     }
     
     

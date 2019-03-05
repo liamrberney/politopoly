@@ -8,6 +8,7 @@ package com.berneytech.politopoly;
 import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -224,8 +225,59 @@ public class Player {
         int b= ThreadLocalRandom.current().nextInt(1, 6 + 1);
         return a+b;
     }
-    private void buildDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void buildDialogue() {
+        out.println("On what color would you like to build?"
+                + "\n [brown],[lightblue],[purple],[orange],[red],[yellow],[green],[blue]");
+        String type=typeDecision();
+        boolean buildable=false;
+        int houseCost=0;
+        for (Space a: spaces)
+            if (a.getType().equals(type)&& a.getBuildings()>=1){
+                buildable=true;
+                houseCost=a.getHouseCost();
+            }
+        if (buildable){
+            out.println("How many houses would you like to build? [Hotel=5 houses]");
+            int x=getNumber();
+            int currentBuildings=0;
+            for (int y=0; y<spaces.size();y++){
+                if (spaces.get(y).getType().equals(type)){
+                    if (spaces.get(y).getBuildings()>=2){
+                        currentBuildings+=(spaces.get(y).getBuildings()-1); 
+                    }
+                }
+            }
+            if (type.equals("brown")||type.equals("blue")){
+                if (x+currentBuildings>=10){
+                    out.println("Sorry, you can't build that many houses here. You currently have "+currentBuildings+" houses\n"
+                            + "on two properties and can build up to "+(10-currentBuildings)+" more." );
+                }
+            }
+            else{
+                if (x+currentBuildings>=15){
+                    out.println("Sorry, you can't build that many houses here. You currently have "+currentBuildings+" houses\n"
+                            + "on three properties and can build up to "+(15-currentBuildings)+" more." );
+                }
+            }
+            int cost = x*houseCost;
+            if (balance>cost){
+                balance-=cost;
+                for (int y=0; y<spaces.size();y++){
+                    
+                }
+            }
+        }
+    }
+    public int getNumber(){
+        for(;;){
+            try{
+                Scanner keyboard = new Scanner(System.in);
+                return keyboard.nextInt();
+            }
+            catch (InputMismatchException e){
+                out.println("That ain't a number boi");
+            }
+        }   
     }
 
     private void superpacDialogue() {
@@ -240,6 +292,18 @@ public class Player {
         }
         
     }
+    String typeDecision(){
+        Scanner keyboard= new Scanner(System.in);
+        String str= keyboard.nextLine();
+        if (str.equals("brown")||str.equals("lightblue")||str.equals("purple")||
+                str.equals("orange")||str.equals("red")||str.equals("yellow")||
+                str.equals("green")||str.equals("blue"))
+            return str;
+        out.println("Sorry, your answer sucked. Try again");
+        return typeDecision();
+        
+    }
+       
     int donation(){
         Scanner keyboard= new Scanner(System.in);
         try {
