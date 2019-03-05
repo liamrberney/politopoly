@@ -224,8 +224,10 @@ public class Player {
         int b= ThreadLocalRandom.current().nextInt(1, 6 + 1);
         return a+b;
     }
-    private void buildDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void buildDialogue() {
+        out.println("On what color would you like to build?"
+                + "\n [brown],[lightblue],[purple],[orange],[red],[yellow],[green],[blue]");
+        //String type=
     }
 
     private void superpacDialogue() {
@@ -240,6 +242,18 @@ public class Player {
         }
         
     }
+    String typeDecision(){
+        Scanner keyboard= new Scanner(System.in);
+        String str= keyboard.nextLine();
+        if (str.equals("brown")||str.equals("lightblue")||str.equals("purple")||
+                str.equals("orange")||str.equals("red")||str.equals("yellow")||
+                str.equals("green")||str.equals("blue"))
+            return str;
+        out.println("Sorry, your answer sucked. Try again");
+        return typeDecision();
+        
+    }
+       
     int donation(){
         Scanner keyboard= new Scanner(System.in);
         try {
