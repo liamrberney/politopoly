@@ -245,4 +245,9 @@ public class otherSpace implements Space{
             Mechanics.setPlayer(player);
         }
     }
+
+    @Override
+    public int getBuildings() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -178,6 +178,10 @@ public class Property implements Space{
     public String getType() {
         return type;
     }
+
+    public int getBuildings(){
+        return buildings;
+    }
     
     
 }

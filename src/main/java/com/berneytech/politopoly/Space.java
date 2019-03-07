@@ -18,4 +18,5 @@ public interface Space {
     int getRent();
     int compareTo(Space x);
     void setBuildings(int x);
+    int getBuildings();
 }

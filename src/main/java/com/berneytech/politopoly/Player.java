@@ -8,6 +8,7 @@ package com.berneytech.politopoly;
 import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -227,7 +228,26 @@ public class Player {
     public void buildDialogue() {
         out.println("On what color would you like to build?"
                 + "\n [brown],[lightblue],[purple],[orange],[red],[yellow],[green],[blue]");
-        //String type=
+        String type=typeDecision();
+        boolean buildable=false;
+        for (Space a: spaces)
+            if (a.getType().equals(type)&& a.getBuildings()==1)
+                buildable=true;
+        if (buildable){
+            out.println("How many houses would you like to build? [Hotel=5 houses]");
+            int x=getNumber();
+        }
+    }
+    public int getNumber(){
+        for(;;){
+            try{
+                Scanner keyboard = new Scanner(System.in);
+                return keyboard.nextInt();
+            }
+            catch (InputMismatchException e){
+                out.println("That ain't a number boi");
+            }
+        }   
     }
 
     private void superpacDialogue() {
