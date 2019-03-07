@@ -18,6 +18,7 @@ public class otherSpace implements Space{
     final int location;
     String type;
     String name;
+    int houseCost;
     otherSpace(int location, String name, String type){
         this.location=location;
         this.type=type;
@@ -248,6 +249,11 @@ public class otherSpace implements Space{
 
     @Override
     public int getBuildings() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getHouseCost() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

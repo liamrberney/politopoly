@@ -230,12 +230,42 @@ public class Player {
                 + "\n [brown],[lightblue],[purple],[orange],[red],[yellow],[green],[blue]");
         String type=typeDecision();
         boolean buildable=false;
+        int houseCost=0;
         for (Space a: spaces)
-            if (a.getType().equals(type)&& a.getBuildings()==1)
+            if (a.getType().equals(type)&& a.getBuildings()>=1){
                 buildable=true;
+                houseCost=a.getHouseCost();
+            }
         if (buildable){
             out.println("How many houses would you like to build? [Hotel=5 houses]");
             int x=getNumber();
+            int currentBuildings=0;
+            for (int y=0; y<spaces.size();y++){
+                if (spaces.get(y).getType().equals(type)){
+                    if (spaces.get(y).getBuildings()>=2){
+                        currentBuildings+=(spaces.get(y).getBuildings()-1); 
+                    }
+                }
+            }
+            if (type.equals("brown")||type.equals("blue")){
+                if (x+currentBuildings>=10){
+                    out.println("Sorry, you can't build that many houses here. You currently have "+currentBuildings+" houses\n"
+                            + "on two properties and can build up to "+(10-currentBuildings)+" more." );
+                }
+            }
+            else{
+                if (x+currentBuildings>=15){
+                    out.println("Sorry, you can't build that many houses here. You currently have "+currentBuildings+" houses\n"
+                            + "on three properties and can build up to "+(15-currentBuildings)+" more." );
+                }
+            }
+            int cost = x*houseCost;
+            if (balance>cost){
+                balance-=cost;
+                for (int y=0; y<spaces.size();y++){
+                    
+                }
+            }
         }
     }
     public int getNumber(){

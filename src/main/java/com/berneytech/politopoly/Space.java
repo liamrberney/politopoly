@@ -19,4 +19,5 @@ public interface Space {
     int compareTo(Space x);
     void setBuildings(int x);
     int getBuildings();
+    int getHouseCost();
 }
