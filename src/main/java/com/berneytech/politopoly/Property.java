@@ -125,6 +125,9 @@ public class Property implements Space{
     public void setBuildings(int x){
         buildings=x;  
     }
+    public void increaseBuildings(){
+        buildings++;
+    }
     boolean decision(){
         Scanner keyboard= new Scanner(System.in);
         String a= keyboard.nextLine();

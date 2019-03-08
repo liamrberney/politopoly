@@ -20,4 +20,5 @@ public interface Space {
     void setBuildings(int x);
     int getBuildings();
     int getHouseCost();
+    void increaseBuildings();
 }
