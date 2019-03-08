@@ -94,7 +94,7 @@ public class Player {
                 }
             }
             
-            
+        
             
         }
         int beforeRoll=location;
@@ -105,8 +105,10 @@ public class Player {
         }
         out.println(name+" rolls a "+dice+" and lands on "+Board.getSpace(location).getName());
         Board.getSpace(location).landedOn(this);
-        if (isDoubles)
+        if (isDoubles){
+            out.println("You rolled doubles. Roll again");
             beginTurn();
+        }
         else{
             boolean turnEnded=false;
             while(!turnEnded){
@@ -252,22 +254,78 @@ public class Player {
                     out.println("Sorry, you can't build that many houses here. You currently have "+currentBuildings+" houses\n"
                             + "on two properties and can build up to "+(10-currentBuildings)+" more." );
                 }
+                else{
+                    int cost = x*houseCost;
+                    if (balance > cost){
+                        balance -= cost;
+                        int toppokiHouses=0;
+                        List<Space> targets= new ArrayList<>();
+                        for (int y=0; y<spaces.size();y++){
+                            if (spaces.get(y).getType().equals(type)){
+                                int houseNumber=spaces.get(y).getBuildings()-1;
+                                if (houseNumber>=toppokiHouses){
+                                    toppokiHouses=houseNumber;
+                                    targets.add(spaces.get(y));
+                                    spaces.remove(y);
+                                }
+                                else{
+                                    targets.add(0,spaces.get(y));
+                                    spaces.remove(y);
+                                }
+                            }
+                        }
+                        int y=0;
+                        for (; x>0; x--){
+                            targets.get(y).increaseBuildings();
+                            y++;
+                            if (y==2){y=0;}
+                        }
+                        for (Space a: targets){
+                            spaces.add(a);
+                        }
+                    }
+                }
             }
             else{
                 if (x+currentBuildings>=15){
                     out.println("Sorry, you can't build that many houses here. You currently have "+currentBuildings+" houses\n"
                             + "on three properties and can build up to "+(15-currentBuildings)+" more." );
                 }
-            }
-            int cost = x*houseCost;
-            if (balance>cost){
-                balance-=cost;
-                for (int y=0; y<spaces.size();y++){
-                    
+                else{
+                    int cost = x*houseCost;
+                    if (balance > cost){
+                        balance -= cost;
+                        int toppokiHouses=0;
+                        List<Space> targets= new ArrayList<>();
+                        for (int y=0; y<spaces.size();y++){
+                            if (spaces.get(y).getType().equals(type)){
+                                int houseNumber=spaces.get(y).getBuildings()-1;
+                                if (houseNumber>=toppokiHouses){
+                                    toppokiHouses=houseNumber;
+                                    targets.add(spaces.get(y));
+                                    spaces.remove(y);
+                                }
+                                else{
+                                    targets.add(0,spaces.get(y));
+                                    spaces.remove(y);
+                                }
+                            }
+                        }
+                        int y=0;
+                        for (; x>0; x--){
+                            targets.get(y).increaseBuildings();
+                            y++;
+                            if (y==3){y=0;}
+                        }
+                        for (Space a: targets){
+                            spaces.add(a);
+                        }
+                    }
                 }
             }
         }
     }
+   
     public int getNumber(){
         for(;;){
             try{
