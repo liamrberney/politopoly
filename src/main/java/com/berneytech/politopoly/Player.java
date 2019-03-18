@@ -94,7 +94,7 @@ public class Player {
                 }
             }
             
-            
+        
             
         }
         int beforeRoll=location;
@@ -105,8 +105,10 @@ public class Player {
         }
         out.println(name+" rolls a "+dice+" and lands on "+Board.getSpace(location).getName());
         Board.getSpace(location).landedOn(this);
-        if (isDoubles)
+        if (isDoubles){
+            out.println("You rolled doubles. Roll again");
             beginTurn();
+        }
         else{
             boolean turnEnded=false;
             while(!turnEnded){

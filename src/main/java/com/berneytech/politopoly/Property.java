@@ -47,7 +47,7 @@ public class Property implements Space{
     
     public void landedOn(Player player) {
         if (owned==1){
-            payRent(owner);
+            payRent(player);
         }
         else{
             buyDialogue(player);
