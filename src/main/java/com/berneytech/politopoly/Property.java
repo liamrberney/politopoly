@@ -61,6 +61,9 @@ public class Property implements Space{
         return 1;
         
     }
+    public int getPrice(){
+        return price;
+    }
     public int isOwned(){
         return owned;
     }

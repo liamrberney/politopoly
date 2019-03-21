@@ -21,4 +21,5 @@ public interface Space {
     int getBuildings();
     int getHouseCost();
     void increaseBuildings();
+    public int getPrice();
 }
