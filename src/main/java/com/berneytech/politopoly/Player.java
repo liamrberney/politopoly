@@ -39,6 +39,7 @@ public class Player {
         jailTurns=0;
         superBalances=new ArrayList<>();
         investmumpts=new ArrayList<>();
+        mortgagedSpaces=new ArrayList<>();
     }
     boolean decision(){
         Scanner keyboard= new Scanner(System.in);
@@ -386,13 +387,27 @@ public class Player {
             out.println("stop being poor");
         }
     }
+    public String nameDecision(){
+        Scanner keyboard= new Scanner(System.in);
+        return keyboard.nextLine();
+      
+    }
 
     private void unmortgageDialogue() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void mortgageDialogue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void mortgageDialogue() {
+        out.println("What property would you like to mortgage?");
+        String name=nameDecision();
+        for (int x=0; x<spaces.size(); x++){
+            if (spaces.get(x).getName().equals(name)){
+                balance+=spaces.get(x).getPrice()*.5;
+                mortgagedSpaces.add(spaces.get(x));
+                spaces.remove(x);
+                x--;  
+            }
+        }
     }
 
     private void statsDialogue() {
@@ -400,6 +415,11 @@ public class Player {
         out.println("Properties: ");
         Collections.sort(spaces, (a, b) -> a.compareTo(b));
         for (Space a:spaces){
+            out.println(a);
+        }
+        out.println("Mortgaged Properties: ");
+        Collections.sort(mortgagedSpaces, (a, b) -> a.compareTo(b));
+        for (Space a:mortgagedSpaces){
             out.println(a);
         }
         out.println("Number of get out of jail free cards: "+getOutOfJailFreeCards);
