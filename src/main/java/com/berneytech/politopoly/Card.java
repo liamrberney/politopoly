@@ -87,7 +87,8 @@ public class Card {
                 if (a.getSendTo()<player.getLocation()){
                     player.setBalance(200);
                 }
-                player.setLocation(a.getSendTo());
+                player.setLocation(a.getSendTo());           
+                Board.getSpace(a.getSendTo()).landedOn(player);
             }
             else{
                 player.setLocation(10);
