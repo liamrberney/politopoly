@@ -74,6 +74,9 @@ public class Property implements Space{
         Mechanics.setPlayer(owner);
         Mechanics.setPlayer(player);
         out.println(player+" pays "+owner+" $"+rent[buildings]+" for rent");
+        if (player.getBalance()<=0){
+            out.println(player+" is out of funds. Would you like to end your life [end] or try to [mortgage]/[sell] stuff to make your balance positive again?");
+        }
     }
     void buyDialogue(Player player){
         List<Player> players= new ArrayList(Mechanics.getPlayers());

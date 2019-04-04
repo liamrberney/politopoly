@@ -393,29 +393,36 @@ public class Player {
         return keyboard.nextLine();
       
     }
+    public void sellBuildings(String name){
+        
+    }
 
     public void unmortgageDialogue() {
-        out.println("What property would you like to mortgage?");
+        out.println("What property would you like to unmortgage?");
         String name=nameDecision();
         for (int x=0; x<mortgagedSpaces.size(); x++){
             if (mortgagedSpaces.get(x).getName().equals(name)){
                 balance-=mortgagedSpaces.get(x).getPrice()*.5;
                 spaces.add(mortgagedSpaces.get(x));
+                updateBuildings(mortgagedSpaces.get(x).getType());
                 mortgagedSpaces.remove(x);
                 x--;  
+                out.println("Unmortgage of "+name+" successful");
             }
         }
     }
 
     public void mortgageDialogue() {
-        out.println("What property would you like to mortgage?");
+        out.println("What property would you like to mortgage? \n Remember to sell any houses before mortgaing a property!");
         String name=nameDecision();
         for (int x=0; x<spaces.size(); x++){
             if (spaces.get(x).getName().equals(name)){
                 balance+=spaces.get(x).getPrice()*.5;
                 mortgagedSpaces.add(spaces.get(x));
                 spaces.remove(x);
+                updateBuildings(mortgagedSpaces.get(mortgagedSpaces.size()-1).getType());
                 x--;  
+                out.println("Mortgage of "+name+" successful");
             }
         }
     }
