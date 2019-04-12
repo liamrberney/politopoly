@@ -1,13 +1,23 @@
 
 package com.berneytech.politopoly;
 
+import java.awt.EventQueue;
 import static java.lang.System.out;
+import javax.swing.JFrame;
 
 public class PolitopolyRunner {
 
     public static void main(String[] args) {
         Mechanics mechanics= new Mechanics();
-      //  out.println(flipText("monopoly"));
+       //out.println(flipText("nlmlklob"));
+     /* EventQueue.invokeLater(new Runnable()
+        {
+      public void run(){
+                ImageFrame frame = new ImageFrame();
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setVisible(true);
+        }
+        });*/
     }
     public static String flipText(String str){
         char[] text=str.toCharArray();
@@ -32,4 +42,5 @@ public class PolitopolyRunner {
         }
         return -1;
     }
+    
 }

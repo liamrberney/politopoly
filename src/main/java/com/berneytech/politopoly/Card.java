@@ -78,6 +78,13 @@ public class Card {
                     break;
                 case "REPAIRS":
                     break;
+                case "MOVEMENT":
+                    if (player.getLocation()<10)
+                        player.setLocation(15);
+                        else {
+                                player.setLocation(25);
+                                }
+                    break;
                 default:
                     out.println("HMMMM");
         }
