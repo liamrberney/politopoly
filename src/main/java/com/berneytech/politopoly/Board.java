@@ -76,7 +76,7 @@ public class Board {
         chance[0]=new Card("ADVANCETOGO","MOVEMENT","Advance to GO (Collect $200)",0,0);
         chance[1]=new Card("ADVANCETOILLINOIS","MOVEMENT","Advance to Illinois Ave. If you pass Go, collect $200.",24,0);
         chance[2]=new Card("ADVANCETOST.CHARLESPLACE","MOVEMENT","Advance to St. Charles Place. If you pass Go, collect $200.",11,0);
-        chance[3]=new Card("ADVANCETONEARESTRAILROAD","MOVEMENT","Advance token to the nearest Railroad and pay owner twice the rental to which he/she {he} is otherwise entitled.",24,2);
+        chance[3]=new Card("ADVANCETONEARESTRAILROAD","MOVEMENT","Advance token to the nearest Railroad and pay owner twice the rental to which he/she {he} is otherwise entitled.",-1,0);
         chance[4]=new Card("DIVIDEND","PAYMENT","Bank pays you dividend of $50.",-1,50);
         chance[5]=new Card("GETOUTOFJAILFREE","GETOUTOFJAILFREE","Get out of Jail Free. This card may be kept until needed, or traded/sold.",-1,0);
         chance[6]=new Card("GOBACK","GOBACK","Go back 3 spaces.",-3,0);
