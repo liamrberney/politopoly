@@ -26,8 +26,8 @@ class ImageFrame extends JFrame{
 
     }
 
-    public static final int DEFAULT_WIDTH = 300;
-    public static final int DEFAULT_HEIGHT = 200;
+    public static final int DEFAULT_WIDTH = 1203;
+    public static final int DEFAULT_HEIGHT = 1232;
 }
 
 
@@ -39,7 +39,7 @@ class ImageComponent extends JComponent{
     private Image image;
     public ImageComponent(){
         try{
-            File image2 = new File("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\politopoly board.png");
+            File image2 = new File("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png");
             image = ImageIO.read(image2);
 
         }
@@ -52,7 +52,7 @@ class ImageComponent extends JComponent{
         int imageWidth = image.getWidth(this);
         int imageHeight = image.getHeight(this);
 
-        g.drawImage(image, 50, 50, this);
+        g.drawImage(image, 0, 0, this);
 
         for (int i = 0; i*imageWidth <= getWidth(); i++)
             for(int j = 0; j*imageHeight <= getHeight();j++)

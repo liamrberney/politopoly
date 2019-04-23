@@ -58,6 +58,15 @@ public class Card {
         out.println(a.getText());
         if (a.getSendTo()==-1){
             switch (a.getType()){
+                case "RAILROAD":
+                    if (player.getLocation()==7){
+                        player.setLocation(15);
+                        Board.getSpace(15).landedOn(player);
+                    }
+                    else{
+                        player.setLocation(25);
+                        Board.getSpace(25).landedOn(player);
+                    }
                 case "PAYMENT":
                 player.setBalance(a.getRent());
                 break;

@@ -8,16 +8,17 @@ import javax.swing.JFrame;
 public class PolitopolyRunner {
 
     public static void main(String[] args) {
-        Mechanics mechanics= new Mechanics();
-       //out.println(flipText("nlmlklob"));
-     /* EventQueue.invokeLater(new Runnable()
+        EventQueue.invokeLater(new Runnable()
         {
       public void run(){
                 ImageFrame frame = new ImageFrame();
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true);
         }
-        });*/
+        });
+        Mechanics mechanics= new Mechanics();
+       //out.println(flipText("nlmlklob"));
+      
     }
     public static String flipText(String str){
         char[] text=str.toCharArray();
