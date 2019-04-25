@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 
 class ImageFrame extends JFrame{
 
-    public ImageFrame(){
+    public ImageFrame(String filePath){
         setTitle("ImageTest");
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
@@ -26,12 +26,12 @@ class ImageFrame extends JFrame{
 
     }
 
-    public static final int DEFAULT_WIDTH = 1203;
-    public static final int DEFAULT_HEIGHT = 1232;
+    public static final int DEFAULT_WIDTH = 725;
+    public static final int DEFAULT_HEIGHT = 775;
 }
 
 
-class ImageComponent extends JComponent{
+ class ImageComponent extends JComponent{
     /**
      * 
      */
@@ -51,8 +51,7 @@ class ImageComponent extends JComponent{
         if(image == null) return;
         int imageWidth = image.getWidth(this);
         int imageHeight = image.getHeight(this);
-
-        g.drawImage(image, 0, 0, this);
+        g.drawImage(image.getScaledInstance(700, -1, Image. SCALE_SMOOTH), 0,0, this);
 
         for (int i = 0; i*imageWidth <= getWidth(); i++)
             for(int j = 0; j*imageHeight <= getHeight();j++)
@@ -60,9 +59,19 @@ class ImageComponent extends JComponent{
     }
 
 }
-
-
-
-public class GUI {
-    
+public class GUI{
+    public GUI(){
+         EventQueue.invokeLater(new Runnable()
+        {
+      public void run(){
+                ImageFrame frame = new ImageFrame();
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setVisible(true);
+        }
+        });
+    }
 }
+
+
+
+
