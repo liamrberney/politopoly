@@ -18,10 +18,11 @@ import javax.swing.JFrame;
 class ImageFrame extends JFrame{
 
     public ImageFrame(String filePath){
+        super();
         setTitle("ImageTest");
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
-        ImageComponent component = new ImageComponent();
+        ImageComponent component = new ImageComponent(filePath);
         add(component);
 
     }
@@ -37,9 +38,10 @@ class ImageFrame extends JFrame{
      */
     private static final long serialVersionUID = 1L;
     private Image image;
-    public ImageComponent(){
+    public ImageComponent(String filePath){
+        super();
         try{
-            File image2 = new File("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png");
+            File image2 = new File(filePath);
             image = ImageIO.read(image2);
 
         }
@@ -47,12 +49,19 @@ class ImageFrame extends JFrame{
             e.printStackTrace();
         }
     }
+    public void scaleImage(Graphics g){
+        g.drawImage(image.getScaledInstance(700, -1, Image. SCALE_SMOOTH), 0,0, this);
+    }
     public void paintComponent (Graphics g){
         if(image == null) return;
         int imageWidth = image.getWidth(this);
         int imageHeight = image.getHeight(this);
-        g.drawImage(image.getScaledInstance(700, -1, Image. SCALE_SMOOTH), 0,0, this);
-
+        if (imageWidth>1000){
+            g.drawImage(image.getScaledInstance(700, -1, Image. SCALE_SMOOTH), 0,0, this);
+        }
+        else{
+            g.drawImage(image.getScaledInstance(50, -1, Image. SCALE_SMOOTH), 200,200, this);
+        }
         for (int i = 0; i*imageWidth <= getWidth(); i++)
             for(int j = 0; j*imageHeight <= getHeight();j++)
                 if(i+j>0) g.copyArea(0, 0, imageWidth, imageHeight, i*imageWidth, j*imageHeight);
@@ -60,16 +69,20 @@ class ImageFrame extends JFrame{
 
 }
 public class GUI{
-    public GUI(){
-         EventQueue.invokeLater(new Runnable()
-        {
-      public void run(){
-                ImageFrame frame = new ImageFrame();
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setVisible(true);
-        }
-        });
+    ImageFrame frame;
+    public GUI(String filePath){
+            frame = new ImageFrame(filePath);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true); 
     }
+    void addToFrame(String filePath){
+        ImageComponent component = new ImageComponent(filePath);
+        frame.add(component);
+    }
+    void removeFromFrame(int a){
+        frame.remove(a);
+    }
+
 }
 
 

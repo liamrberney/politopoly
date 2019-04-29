@@ -5,11 +5,13 @@
  */
 package com.berneytech.politopoly;
 
+import java.awt.EventQueue;
 import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JFrame;
 
 /**
  *
@@ -20,6 +22,9 @@ public class Mechanics {
     public static List<Player> players;
     public static int railroadMultiplier;
     public Mechanics(){
+        //GUI a=new GUI("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\Dice\\dice 2.png");
+        GUI a=new GUI("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png");
+        //a.addToFrame("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png");
         railroadMultiplier=1;
         players=new ArrayList<>();
         out.print("How many players?: ");
