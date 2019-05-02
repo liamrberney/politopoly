@@ -17,17 +17,13 @@ import javax.swing.JFrame;
 
 class ImageFrame extends JFrame{
 
-    public ImageFrame(String filePath){
+    public ImageFrame(){
         super();
         setTitle("ImageTest");
         setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-
-        ImageComponent component = new ImageComponent(filePath);
-        add(component);
-
     }
 
-    public static final int DEFAULT_WIDTH = 725;
+    public static final int DEFAULT_WIDTH = 900;
     public static final int DEFAULT_HEIGHT = 775;
 }
 
@@ -38,8 +34,18 @@ class ImageFrame extends JFrame{
      */
     private static final long serialVersionUID = 1L;
     private Image image;
+    int x;
+    int y;
+    int size;
+    String name;
     public ImageComponent(String filePath){
         super();
+        x=0;
+        y=0;
+        size=100;
+        setImage(filePath);
+    }
+    public void setImage(String filePath){
         try{
             File image2 = new File(filePath);
             image = ImageIO.read(image2);
@@ -49,19 +55,26 @@ class ImageFrame extends JFrame{
             e.printStackTrace();
         }
     }
-    public void scaleImage(Graphics g){
-        g.drawImage(image.getScaledInstance(700, -1, Image. SCALE_SMOOTH), 0,0, this);
+    public ImageComponent(String filePath, int x, int y, int size, String name){
+        super();
+        this.name=name;
+        this.x=x;
+        this.y=y;
+        this.size=size;
+        try{
+            File image2 = new File(filePath);
+            image = ImageIO.read(image2);
+
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
     public void paintComponent (Graphics g){
         if(image == null) return;
         int imageWidth = image.getWidth(this);
         int imageHeight = image.getHeight(this);
-        if (imageWidth>1000){
-            g.drawImage(image.getScaledInstance(700, -1, Image. SCALE_SMOOTH), 0,0, this);
-        }
-        else{
-            g.drawImage(image.getScaledInstance(50, -1, Image. SCALE_SMOOTH), 200,200, this);
-        }
+            g.drawImage(image.getScaledInstance(size, -1, Image. SCALE_SMOOTH), x,y, this);
         for (int i = 0; i*imageWidth <= getWidth(); i++)
             for(int j = 0; j*imageHeight <= getHeight();j++)
                 if(i+j>0) g.copyArea(0, 0, imageWidth, imageHeight, i*imageWidth, j*imageHeight);
@@ -70,17 +83,17 @@ class ImageFrame extends JFrame{
 }
 public class GUI{
     ImageFrame frame;
-    public GUI(String filePath){
-            frame = new ImageFrame(filePath);
+    public GUI(){
+            frame = new ImageFrame();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true); 
     }
-    void addToFrame(String filePath){
-        ImageComponent component = new ImageComponent(filePath);
+    void addToFrame(ImageComponent component){
         frame.add(component);
+        frame.setVisible(true);
     }
-    void removeFromFrame(int a){
-        frame.remove(a);
+    void removeFromFrame(ImageComponent component){
+        frame.remove(component);
     }
 
 }

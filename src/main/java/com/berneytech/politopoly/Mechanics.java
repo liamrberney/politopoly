@@ -21,10 +21,18 @@ public class Mechanics {
     public Board board;
     public static List<Player> players;
     public static int railroadMultiplier;
+    public static GUI gameBoard;
+    public static ImageComponent die1;
+    public static ImageComponent die2;
     public Mechanics(){
         //GUI a=new GUI("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\Dice\\dice 2.png");
-        GUI a=new GUI("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png");
-        //a.addToFrame("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png");
+        die1=new ImageComponent("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png",0,0,50,"die1");
+        die2=new ImageComponent("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png",0,50,50,"die2");
+        gameBoard=new GUI();
+        ImageComponent boardImage = new ImageComponent("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png",100,0,700,"gameBoard");
+        gameBoard.addToFrame(boardImage);
+        gameBoard.addToFrame(die1);
+        gameBoard.addToFrame(die2);
         railroadMultiplier=1;
         players=new ArrayList<>();
         out.print("How many players?: ");
@@ -42,6 +50,9 @@ public class Mechanics {
     }
     static void regulate(){
         railroadMultiplier*=.5;
+    }
+    static GUI getGUI(){
+        return gameBoard;
     }
     static void deregulate(){
         railroadMultiplier*=2;

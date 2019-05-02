@@ -13,10 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- *
- * @author bernelia000
- */
+
 public class Player {
     List<Space> spaces;
     List<Space> mortgagedSpaces;
@@ -205,6 +202,10 @@ public class Player {
     boolean diceRoll(){
         int a= ThreadLocalRandom.current().nextInt(1, 6 + 1);
         int b= ThreadLocalRandom.current().nextInt(1, 6 + 1);
+        
+        Mechanics.die1.setImage("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\Dice\\dice "+a+".png");
+        Mechanics.die2.setImage("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\Dice\\dice "+b+".png");
+        Mechanics.gameBoard.frame.setVisible(true);
         dice=a+b;
         out.println(dice);
         if(location+dice>39)
