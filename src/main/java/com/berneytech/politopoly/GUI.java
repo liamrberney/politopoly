@@ -1,7 +1,5 @@
 package com.berneytech.politopoly;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -70,14 +68,11 @@ class ImageFrame extends JFrame{
             e.printStackTrace();
         }
     }
-    public void paintComponent (Graphics g){
+    public void paintComponent (Graphics g) {
         if(image == null) return;
         int imageWidth = image.getWidth(this);
         int imageHeight = image.getHeight(this);
             g.drawImage(image.getScaledInstance(size, -1, Image. SCALE_SMOOTH), x,y, this);
-        for (int i = 0; i*imageWidth <= getWidth(); i++)
-            for(int j = 0; j*imageHeight <= getHeight();j++)
-                if(i+j>0) g.copyArea(0, 0, imageWidth, imageHeight, i*imageWidth, j*imageHeight);
     }
 
 }
@@ -86,7 +81,7 @@ public class GUI{
     public GUI(){
             frame = new ImageFrame();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true); 
+            frame.setVisible(true);
     }
     void addToFrame(ImageComponent component){
         frame.add(component);

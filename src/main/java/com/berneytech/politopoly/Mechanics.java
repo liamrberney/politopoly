@@ -26,10 +26,10 @@ public class Mechanics {
     public static ImageComponent die2;
     public Mechanics(){
         //GUI a=new GUI("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\Dice\\dice 2.png");
-        die1=new ImageComponent("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png",0,0,50,"die1");
-        die2=new ImageComponent("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png",0,50,50,"die2");
+        die1=new ImageComponent("bitmap.png",0,0,50,"die1");
+        die2=new ImageComponent("bitmap.png",0,50,50,"die2");
         gameBoard=new GUI();
-        ImageComponent boardImage = new ImageComponent("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\bitmap.png",100,0,700,"gameBoard");
+        ImageComponent boardImage = new ImageComponent("bitmap.png",100,0,700,"gameBoard");
         gameBoard.addToFrame(boardImage);
         gameBoard.addToFrame(die1);
         gameBoard.addToFrame(die2);

@@ -203,8 +203,8 @@ public class Player {
         int a= ThreadLocalRandom.current().nextInt(1, 6 + 1);
         int b= ThreadLocalRandom.current().nextInt(1, 6 + 1);
         
-        Mechanics.die1.setImage("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\Dice\\dice "+a+".png");
-        Mechanics.die2.setImage("C:\\Users\\bernelia000\\Documents\\NetBeansProjects\\politopoly\\src\\Dice\\dice "+b+".png");
+        Mechanics.die1.setImage("Dice/dice "+a+".png");
+        Mechanics.die2.setImage("Dice/dice "+b+".png");
         Mechanics.gameBoard.frame.setVisible(true);
         dice=a+b;
         out.println(dice);
